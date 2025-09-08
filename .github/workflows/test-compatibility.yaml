@@ -19,7 +19,7 @@ jobs:
         name: Get latest release tag of website-scraper/website-scraper-puppeteer
         if: matrix.website-scraper-puppeteer-version == 'latest-release'
         id: get_latest_release
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           result-encoding: string
           script: |
