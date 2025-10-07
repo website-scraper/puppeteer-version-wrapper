@@ -4,7 +4,7 @@
 
 # @website-scraper/puppeteer-version-wrapper
 
-A bridge module that ensures [website-scraper-puppeteer](https://www.npmjs.com/package/website-scraper-puppeteer) always works with the latest supported version of Puppeteer.
+A wrapper module around `puppeteer` package that ensures [website-scraper-puppeteer](https://www.npmjs.com/package/website-scraper-puppeteer) always work with the latest supported version of Puppeteer.
 
 `website-scraper-puppeteer` is tightly coupled to a specific Puppeteer major version, which quickly becomes outdated and unsupported.
 
