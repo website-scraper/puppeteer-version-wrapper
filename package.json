@@ -1,6 +1,6 @@
 {
   "name": "@website-scraper/puppeteer-version-wrapper",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Wrapper to support latest versions of puppeteer inside the website-scraper-puppeteer module",
   "type": "module",
   "exports": {
