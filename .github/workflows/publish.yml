@@ -32,7 +32,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          TAG=$(npm version patch -m "Release %s [skip ci]")
+          TAG=$(npm version major -m "Release %s [skip ci]")
           echo "Created tag: $TAG"
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           git push origin main --follow-tags
