@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         # Run tests on master and latest released version of website-scraper-puppeteer module
-        website-scraper-puppeteer-version: [add-compatibility-bridge, latest-release]
+        website-scraper-puppeteer-version: [master, latest-release]
 
     steps:
       -
@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install version bridge package from the branch
+      - name: Install version wrapper package from the branch
         run: npm install website-scraper/puppeteer-version-wrapper#${{ github.head_ref }} --save
 
       - name: Disable AppArmor
