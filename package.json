@@ -2,6 +2,9 @@
   "name": "@website-scraper/puppeteer-version-wrapper",
   "version": "1.0.1",
   "description": "Wrapper to support latest versions of puppeteer inside the website-scraper-puppeteer module",
+  "repository": {
+    "url": "https://github.com/website-scraper/puppeteer-version-wrapper",
+  },
   "type": "module",
   "exports": {
     ".": "./index.js"
