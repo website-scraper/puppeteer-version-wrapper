@@ -40,8 +40,14 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: npm install
+
+      - name: Verifying provenance attestations
+        run: npm audit signatures
 
       - name: Install version wrapper package from the branch
         run: npm install website-scraper/puppeteer-version-wrapper#${{ github.head_ref }} --save
