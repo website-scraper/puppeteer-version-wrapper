@@ -10,6 +10,7 @@ on:
       - 'index.js'  
 
 permissions:
+  id-token: write
   contents: write
 
 jobs:
@@ -28,6 +29,9 @@ jobs:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: npm install
 
@@ -42,9 +46,7 @@ jobs:
           git push origin main --follow-tags
 
       - name: Publish to npm
-        run: npm publish --access=public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+        run: npm publish --provenance --access=public
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
