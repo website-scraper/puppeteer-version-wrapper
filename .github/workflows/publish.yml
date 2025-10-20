@@ -1,9 +1,24 @@
 name: Publish to npm
 
 on:
+  workflow_dispatch: 
+    inputs:
+      bump:
+        description: 'Version bump type'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+    paths:
+      - 'package.json'
+      - 'index.js'  
 
 permissions:
   id-token: write
@@ -16,12 +31,34 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GH_PUSH_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Verifying provenance attestations
+        run: npm audit signatures
+
+      - name: Bump version and create tag
+        id: bump-version
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          TAG=$(npm version ${{ github.event.inputs.bump || 'minor' }} -m "Release %s [skip ci]")
+          echo "Created tag: $TAG"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          git push origin main --follow-tags
 
       - name: Publish to npm
         run: npm publish --provenance --access=public
@@ -29,6 +66,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.bump-version.outputs.tag }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
