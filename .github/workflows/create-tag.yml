@@ -1,0 +1,58 @@
+name: Create tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version bump type'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+      - 'index.js'
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GH_PUSH_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Verifying provenance attestations
+        run: npm audit signatures
+
+      - name: Bump version and create tag
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          npm version ${{ github.event.inputs.bump || 'minor' }} -m "Release %s"
+
+      - name: Dry run publishing to npm
+        run: npm publish --dry-run --provenance --access=public
+
+      - name: Push to GitHub
+        run: git push origin main --follow-tags
