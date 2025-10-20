@@ -24,7 +24,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Publish to npm
-        run: npm publish --dry-run --provenance --access=public
+        run: npm publish --provenance --access=public
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

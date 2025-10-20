@@ -51,8 +51,5 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           npm version ${{ github.event.inputs.bump || 'minor' }} -m "Release %s"
 
-      - name: Dry run publishing to npm
-        run: npm publish --dry-run --provenance --access=public
-
       - name: Push to GitHub
         run: git push origin main --follow-tags
