@@ -12,6 +12,12 @@ To solve this issue, `website-scraper-puppeteer` is now depends on `@website-scr
 
 This module automatically updates its Puppeteer dependency using Dependabot and continuous integration. When tests pass, a new minor version is published to NPM, keeping compatibility up-to-date without manual intervention.
 
+## Sponsors
+Maintenance of this project is made possible by all the [contributors](https://github.com/website-scraper/puppeteer-version-wrapper/graphs/contributors) and [sponsors](https://github.com/sponsors/s0ph1e).
+If you'd like to sponsor this project and have your avatar or company logo appear below [click here](https://github.com/sponsors/s0ph1e). 💖
+
+<!-- sponsors --><!-- sponsors -->
+
 ## How It Works
 
 - Monitors Puppeteer releases via Dependabot
