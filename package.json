@@ -2,9 +2,6 @@
   "name": "@website-scraper/puppeteer-version-wrapper",
   "version": "1.0.2",
   "description": "Wrapper to support latest versions of puppeteer inside the website-scraper-puppeteer module",
-  "repository": {
-    "url": "git+https://github.com/website-scraper/puppeteer-version-wrapper.git"
-  },
   "type": "module",
   "exports": {
     ".": "./index.js"
@@ -17,6 +14,14 @@
   },
   "author": "Illia Antypenko <illia@antypenko.dev>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/website-scraper/puppeteer-version-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/website-scraper/puppeteer-version-wrapper/issues"
+  },
+  "homepage": "https://github.com/website-scraper/puppeteer-version-wrapper#readme",
   "dependencies": {
     "puppeteer": "^24.14.0"
   }
