@@ -30,7 +30,7 @@ jobs:
             return latestRelease.data.tag_name;
 
       - name: Checkout website-scraper-puppeteer
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: website-scraper/website-scraper-puppeteer
           ref: ${{ steps.get_latest_release.outputs.result || matrix.website-scraper-puppeteer-version }}
