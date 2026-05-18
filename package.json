@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/website-scraper/puppeteer-version-wrapper#readme",
   "dependencies": {
-    "puppeteer": "^24.14.0"
+    "puppeteer": "^25.0.4"
   }
 }
